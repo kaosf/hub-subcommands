@@ -32,10 +32,10 @@ make install
 
 These commands install `hub-subcommands`.
 
-You may add an alias like below:
+You may add a function like below:
 
 ```
-echo 'alias hub=hub-subcommands' >> ~/.profile
+echo 'function hub() { hub-subcommands; }' >> ~/.profile
 ```
 
 This guide is shown also after `make install`.

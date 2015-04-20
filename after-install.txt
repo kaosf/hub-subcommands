@@ -2,4 +2,4 @@
 # Add a following code to your .profile, .zshenv or etc.
 ################################################################################
 
-alias hub=hub-subcommands
+function hub() { hub-subcommands; }
