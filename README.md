@@ -35,7 +35,7 @@ These commands install `hub-subcommands`.
 You may add a function like below:
 
 ```
-echo 'function hub() { hub-subcommands; }' >> ~/.profile
+echo 'function hub() { hub-subcommands $@; }' >> ~/.profile
 ```
 
 This guide is shown also after `make install`.
