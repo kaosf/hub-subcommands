@@ -1,0 +1,9 @@
+PREFIX=
+
+all:
+
+install: all
+
+uninstall:
+
+clean:
