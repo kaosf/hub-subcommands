@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require 'net/http'
+require 'json'
+require 'yaml'
+
+config_file_path = "#{ENV['HOME']}/.config/hub"
+unless File.exists? config_file_path
+  STDERR.puts "#{config_file_path} doesn't exist."
+  exit 1
+end
+$user = YAML.load(File.open config_file_path)['github.com'][0]['user']
+
+def get_sub_repositories(page = 1)
+  url = "https://api.github.com/users/#{$user}/repos?page=#{page}&per_page=100"
+  (JSON.parse (Net::HTTP.get (URI.parse url))).map { |v| v["name"] }
+end
+
+def print_repostories(repositories)
+  repositories.each do |repository|
+    puts repository
+  end
+end
+
+rs = get_sub_repositories
+print_repostories rs
+page = 2
+while rs.size >= 100
+  rs = get_sub_repositories page
+  print_repostories rs
+  page += 1
+end

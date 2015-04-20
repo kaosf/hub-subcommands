@@ -1,9 +1,25 @@
 PREFIX=
+HUB=
 
-all:
+all: hub-subcommands
+
+hub-subcommands: hub-subcommands.sh
+	cat hub-subcommands.sh | \
+	sed 's|\$$PREFIX|$(PREFIX)|g' | \
+	sed 's|\$$HUB|$(HUB)|g' \
+	> hub-subcommands
+	chmod +x hub-subcommands
 
 install: all
+	mkdir -p $(PREFIX)/bin
+	cp hub-subcommands $(PREFIX)/bin
+	mkdir -p $(PREFIX)/libexec/hub-subcommands
+	cp browse repositories $(PREFIX)/libexec/hub-subcommands
+	cat after-install.txt
 
 uninstall:
+	rm $(PREFIX)/bin/hub-subcommands
+	rm -rf $(PREFIX)/libexec/hub-subcommands
 
 clean:
+	rm -f hub-subcommands

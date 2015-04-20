@@ -1,0 +1,29 @@
+#!/bin/bash
+
+X=$(git remote -v | grep github.com | grep '(push)' | awk '{print $1 " " $2}')
+if [ $(echo "$X" | wc -l) = 0 ]
+then
+  echo "This isn't a GitHub repository." >&2
+  exit 1
+fi
+if [ $(echo "$X" | wc -l) -gt 1 ]
+then
+  if [ $# -lt 1 ]
+  then
+    REMOTE=origin
+  else
+    REMOTE=$1
+  fi
+  if [ $(echo "$X" | grep "^$REMOTE " | wc -l) != 1 ]
+  then
+    echo "Can't detect one repository." >&2
+    exit 1
+  else
+    X=$(echo "$X" | grep "^$REMOTE ")
+  fi
+fi
+X=$(echo $X | awk '{print $2}')
+OWNER=$(echo $X | cut -d ':' -f 2 | cut -d '/' -f 1)
+REPOS=$(echo $X | cut -d '/' -f 2 | awk -F '.git' '{print $1}')
+
+xdg-open https://github.com/${OWNER}/${REPOS}
