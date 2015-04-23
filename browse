@@ -23,7 +23,13 @@ then
   fi
 fi
 X=$(echo $X | awk '{print $2}')
-OWNER=$(echo $X | cut -d ':' -f 2 | cut -d '/' -f 1)
-REPOS=$(echo $X | cut -d '/' -f 2 | awk -F '.git' '{print $1}')
+if echo $X | grep @
+then
+  OWNER=$(echo $X | cut -d ':' -f 2 | cut -d '/' -f 1)
+  REPOS=$(echo $X | cut -d '/' -f 2 | awk -F '.git' '{print $1}')
+else
+  OWNER=$(echo $X | awk -F '//' '{print $2}' | cut -d '/' -f 2)
+  REPOS=$(echo $X | awk -F '//' '{print $2}' | cut -d '/' -f 3 | cut -d '.' -f 1)
+fi
 
 xdg-open https://github.com/${OWNER}/${REPOS}
