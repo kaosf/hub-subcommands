@@ -32,4 +32,9 @@ else
   REPOS=$(echo $X | awk -F '//' '{print $2}' | cut -d '/' -f 3 | cut -d '.' -f 1)
 fi
 
-xdg-open https://github.com/${OWNER}/${REPOS}
+if which sw_vers > /dev/null
+then
+  open https://github.com/${OWNER}/${REPOS}
+else
+  xdg-open https://github.com/${OWNER}/${REPOS}
+fi
