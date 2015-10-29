@@ -33,7 +33,7 @@ else
   REPOS=${REPOS_WITH_EXT%.*}
 fi
 
-if which sw_vers > /dev/null
+if which sw_vers > /dev/null 2>&1
 then
   open https://github.com/${OWNER}/${REPOS}
 else
