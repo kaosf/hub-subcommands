@@ -14,7 +14,7 @@ install: all
 	mkdir -p $(PREFIX)/bin
 	cp hub-subcommands $(PREFIX)/bin
 	mkdir -p $(PREFIX)/libexec/hub-subcommands
-	cp browse repositories $(PREFIX)/libexec/hub-subcommands
+	cp repositories $(PREFIX)/libexec/hub-subcommands
 	cat after-install.txt
 
 uninstall:
