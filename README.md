@@ -1,3 +1,7 @@
+**You should not use `hub` now. I recommend [GitHub CLI](https://github.com/cli/cli).**
+
+---
+
 # hub subcommands
 
 Add following subcommands to `hub` command.
