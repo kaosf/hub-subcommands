@@ -44,4 +44,4 @@ This guide is shown also after `make install`.
 
 [MIT](http://opensource.org/licenses/MIT)
 
-Copyright (C) 2015 ka
+Copyright (C) 2015-2024 ka
